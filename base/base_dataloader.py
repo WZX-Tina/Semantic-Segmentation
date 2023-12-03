@@ -9,13 +9,14 @@ class BaseDataLoader(DataLoader):
         self.shuffle = shuffle
         self.dataset = dataset
         self.nbr_examples = len(dataset)
+        print(self.nbr_examples)
         if val_split: self.train_sampler, self.val_sampler = self._split_sampler(val_split)
         else: self.train_sampler, self.val_sampler = None, None
 
         self.init_kwargs = {
             'dataset': self.dataset,
             'batch_size': batch_size,
-            'shuffle': self.shuffle,
+            'shuffle': shuffle,
             'num_workers': num_workers,
             'pin_memory': True
         }
